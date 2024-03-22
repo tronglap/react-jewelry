@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Prata&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Jost", sans-serif;
+    --seconddaryfont: "Prata";
+    --color-primary: #daa14c;
+    --color-secondary: #30373e;
+    --color-text: #666;
+    --color-accent: #30373e;
+    --color-lighter: #888;
+    --color-dark: #202020;
+    --color-highlight: #ccc;
+    --color-border: #e3e3e3;
+    --color-background-light: #f8f6f4;
+    --color-background-field: #DADADA20;
+    background-color: #f8f6f4;
+}

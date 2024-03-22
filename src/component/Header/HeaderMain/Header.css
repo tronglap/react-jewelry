@@ -1,0 +1,126 @@
+svg {
+    margin-top: 0px;
+}
+
+path {
+    fill: black;
+    stroke: black;
+    stroke-width: 2px;
+    transition: 0.2s linear;
+}
+
+.HeaderMain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.HeaderMain .left {
+    display: flex;
+    gap: 20px;
+    width: 40%;
+}
+
+.HeaderMain .left .Home,
+.HeaderMain .left .Shop,
+.HeaderMain .left .Categories,
+.HeaderMain .left .Blog,
+.HeaderMain .left .Contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+    line-height: 1.2857142857;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--color-secondary);
+    letter-spacing: 1px;
+    transition: 0.2s ease;
+}
+
+.HeaderMain .left .Home:hover,
+.HeaderMain .left .Shop:hover,
+.HeaderMain .left .Categories:hover,
+.HeaderMain .left .Blog:hover,
+.HeaderMain .left .Contact:hover {
+    color: var(--color-primary);
+}
+
+
+.HeaderMain .left .Home i,
+.HeaderMain .left .Shop i,
+.HeaderMain .left .Categories i,
+.HeaderMain .left .Blog i,
+.HeaderMain .left .Contact i {
+    margin-left: 10px;
+}
+
+.HeaderMain .mid {
+    display: flex;
+    justify-content: center;
+    width: 20%;
+}
+
+.HeaderMain .mid .thumb {
+    width: 30%;
+}
+
+.HeaderMain .right {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 40%;
+}
+
+.HeaderMain .right .register a {
+    color: var(--color-secondary);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 15px;
+    transition: 0.2s linear;
+}
+
+.HeaderMain .right .register a:hover {
+    color: var(--color-primary)
+}
+
+.HeaderMain .right .search {
+    transition: 0.2s ease;
+}
+
+.HeaderMain .right .search i {
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+.HeaderMain .right .search:hover {
+    color: var(--color-primary)
+}
+
+.HeaderMain .right .cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+
+.HeaderMain .right .cart:hover svg path {
+    fill: var(--color-primary);
+    stroke: var(--color-primary);
+    stroke-width: 2px;
+}
+
+.HeaderMain .right .cart:hover .count {
+    color: var(--color-primary)
+}
+
+.HeaderMain .right .cart .count {
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 20px;
+    transition: 0.2s linear;
+    color: var(--color-secondary)
+}
