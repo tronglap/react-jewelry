@@ -24,6 +24,15 @@ const Cart = () => {
     localStorage.setItem("LIST_CART", JSON.stringify(newCart));
   };
 
+  const handleProceedToCheckout = () => {
+    const storedCart = localStorage.getItem("LIST_CART");
+    if (storedCart) {
+      window.location.href = "/checkout";
+    } else {
+      window.location.reload();
+    }
+  };
+
   return (
     <div className="Cart">
       <Header />
@@ -83,7 +92,13 @@ const Cart = () => {
                         <div className="price d-flex align-items-center justify-content-center ">
                           <span>$</span>
                           <p>
-                            {item.isPromotion ? item.isPromotion : item.cost}
+                            {(item.promotion
+                              ? item.promotion
+                              : item.cost
+                            ).toLocaleString("en-US", {
+                              minimumFractionDigits: 2,
+                              maximumFractionDigits: 2,
+                            })}
                           </p>
                         </div>
                       </Col>
@@ -109,9 +124,8 @@ const Cart = () => {
                           <p>
                             <span>$</span>
                             {(
-                              (item.isPromotion
-                                ? item.isPromotion
-                                : item.cost) * item.quantity
+                              (item.promotion ? item.promotion : item.cost) *
+                              item.quantity
                             ).toLocaleString("en-US", {
                               minimumFractionDigits: 2,
                               maximumFractionDigits: 2,
@@ -141,8 +155,8 @@ const Cart = () => {
                         .reduce(
                           (total, item) =>
                             total +
-                            (item.isPromotion
-                              ? parseFloat(item.isPromotion)
+                            (item.promotion
+                              ? parseFloat(item.promotion)
                               : parseFloat(item.cost)) *
                               item.quantity,
                           0
@@ -155,7 +169,10 @@ const Cart = () => {
                   </div>
                 </div>
                 <div className="proceed-to-checkout">
-                  <Link className="btn-proceed" to="/checkout">
+                  <Link
+                    className="btn-proceed"
+                    onClick={handleProceedToCheckout}
+                  >
                     <Button title="Proceed To Checkout"></Button>
                   </Link>
                 </div>

@@ -12,6 +12,7 @@ import AutoTop from "./component/AutoTop/AutoTop";
 import Cart from "./component/Cart/Cart";
 import Checkout from "./component/Checkout/Checkout";
 import OS from "./component/OrderSuccess/OS";
+import ToTop from "./component/ToTop/ToTop";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <ToastContainer />
       <CartProvider>
         <AutoTop />
+        <ToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/list-product" element={<ListProduct />} />

@@ -9,8 +9,8 @@ import Button from "../Button/Button";
 import axios from "axios";
 
 const Checkout = () => {
-  const { cartItems } = useCart();
-  const [Checkoutcart, setCheckoutcart] = useState(cartItems);
+  const { cartItems, setCartItems } = useCart();
+  const [Checkoutcart] = useState(cartItems);
   const isProduct = Checkoutcart.length > 0;
   const navigate = useNavigate();
 
@@ -40,6 +40,8 @@ const Checkout = () => {
         street_address: "",
         email_address: "",
       });
+      setCartItems([]);
+      localStorage.setItem("LIST_CART", JSON.stringify(cartItems));
       navigate("/order-success");
     }
   };
@@ -51,6 +53,7 @@ const Checkout = () => {
   const handleBlur = () => {
     setIsFocused(false);
   };
+  console.log(input);
 
   return (
     <div className="CheckOut">
@@ -93,6 +96,7 @@ const Checkout = () => {
                     className={isFocused ? "focused" : ""}
                     onChange={handleInputChange}
                     value={input.name}
+                    name="name"
                     required
                   />
                 </div>
@@ -105,6 +109,7 @@ const Checkout = () => {
                     className={isFocused ? "focused" : ""}
                     onChange={handleInputChange}
                     value={input.phone}
+                    name="phone"
                     required
                   />
                 </div>
@@ -117,6 +122,7 @@ const Checkout = () => {
                     className={isFocused ? "focused" : ""}
                     onChange={handleInputChange}
                     value={input.street_address}
+                    name="street_address"
                     required
                   />
                 </div>
@@ -129,6 +135,7 @@ const Checkout = () => {
                     className={isFocused ? "focused" : ""}
                     onChange={handleInputChange}
                     value={input.email_address}
+                    name="email_address"
                     required
                   />
                 </div>
@@ -156,7 +163,7 @@ const Checkout = () => {
                       <div className="price">
                         <span>$</span>
                         {(
-                          (item.isPromotion ? item.isPromotion : item.cost) *
+                          (item.promotion ? item.promotion : item.cost) *
                           item.quantity
                         ).toLocaleString("en-US", {
                           minimumFractionDigits: 2,
@@ -173,8 +180,8 @@ const Checkout = () => {
                       {Checkoutcart.reduce(
                         (total, item) =>
                           total +
-                          (item.isPromotion
-                            ? parseFloat(item.isPromotion)
+                          (item.promotion
+                            ? parseFloat(item.promotion)
                             : parseFloat(item.cost)) *
                             item.quantity,
                         0
