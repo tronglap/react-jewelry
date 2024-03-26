@@ -45,9 +45,11 @@ const ListProduct = () => {
 
   useEffect(() => {
     const sortProduct = [...products].sort((a, b) => {
+      // Chuyển đổi giá sản phẩm thành số để so sánh
       const priceA = parseFloat(a.promotion || a.cost);
       const priceB = parseFloat(b.promotion || b.cost);
 
+      // So sánh giá của hai sản phẩm và trả về kết quả
       return priceA - priceB;
     });
     setProductFilter(sortProduct);
@@ -117,26 +119,25 @@ const ListProduct = () => {
                 </Container>
               </Row>
               <Row>
-                {productFilter &&
-                  productFilter.map((item) => (
-                    <Col lg={4} className="Cart_list" key={item.id}>
-                      <CartProduct
-                        id={item.id}
-                        image={item.image}
-                        image_second={item.image_second}
-                        CategoryId={
-                          categories.find(
-                            (category) => category.id === item.CategoryId
-                          )?.categories
-                        }
-                        name={item.name}
-                        cost={item.cost}
-                        promotion={item.promotion}
-                        sale={item.sale}
-                        perdiscount={item.perdiscount}
-                      />
-                    </Col>
-                  ))}
+                {productFilter.map((item) => (
+                  <Col lg={4} className="Cart_list" key={item.id}>
+                    <CartProduct
+                      id={item.id}
+                      image={item.image}
+                      image_second={item.image_second}
+                      CategoryId={
+                        categories.find(
+                          (category) => category.id === item.CategoryId
+                        )?.categories
+                      }
+                      name={item.name}
+                      cost={item.cost}
+                      promotion={item.promotion}
+                      sale={item.sale}
+                      perdiscount={item.perdiscount}
+                    />
+                  </Col>
+                ))}
               </Row>
             </Col>
           </Row>

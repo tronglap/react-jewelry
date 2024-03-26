@@ -117,26 +117,25 @@ const ListProduct = () => {
                 </Container>
               </Row>
               <Row>
-                {productFilter &&
-                  productFilter.map((item) => (
-                    <Col lg={4} className="Cart_list" key={item.id}>
-                      <CartProduct
-                        id={item.id}
-                        image={item.image}
-                        image_second={item.image_second}
-                        CategoryId={
-                          categories.find(
-                            (category) => category.id === item.CategoryId
-                          )?.categories
-                        }
-                        name={item.name}
-                        cost={item.cost}
-                        promotion={item.promotion}
-                        sale={item.sale}
-                        perdiscount={item.perdiscount}
-                      />
-                    </Col>
-                  ))}
+                {productFilter.map((item) => (
+                  <Col lg={4} className="Cart_list" key={item.id}>
+                    <CartProduct
+                      id={item.id}
+                      image={item.image}
+                      image_second={item.image_second}
+                      CategoryId={
+                        categories.find(
+                          (category) => category.id === item.CategoryId
+                        )?.categories
+                      }
+                      name={item.name}
+                      cost={item.cost}
+                      promotion={item.promotion}
+                      sale={item.sale}
+                      perdiscount={item.perdiscount}
+                    />
+                  </Col>
+                ))}
               </Row>
             </Col>
           </Row>

@@ -45,10 +45,15 @@ const ListProduct = () => {
 
   useEffect(() => {
     const sortProduct = [...products].sort((a, b) => {
-      const priceA = parseFloat(a.promotion || a.cost);
-      const priceB = parseFloat(b.promotion || b.cost);
-
-      return priceA - priceB;
+      if (a.promotion === "" && b.promotion === "") {
+        return a.cost - b.cost;
+      } else if (a.promotion === "") {
+        return 1;
+      } else if (b.promotion === "") {
+        return -1;
+      } else {
+        return a.promotion - b.promotion;
+      }
     });
     setProductFilter(sortProduct);
   }, [products]);
@@ -117,26 +122,25 @@ const ListProduct = () => {
                 </Container>
               </Row>
               <Row>
-                {productFilter &&
-                  productFilter.map((item) => (
-                    <Col lg={4} className="Cart_list" key={item.id}>
-                      <CartProduct
-                        id={item.id}
-                        image={item.image}
-                        image_second={item.image_second}
-                        CategoryId={
-                          categories.find(
-                            (category) => category.id === item.CategoryId
-                          )?.categories
-                        }
-                        name={item.name}
-                        cost={item.cost}
-                        promotion={item.promotion}
-                        sale={item.sale}
-                        perdiscount={item.perdiscount}
-                      />
-                    </Col>
-                  ))}
+                {productFilter.map((item) => (
+                  <Col lg={4} className="Cart_list" key={item.id}>
+                    <CartProduct
+                      id={item.id}
+                      image={item.image}
+                      image_second={item.image_second}
+                      CategoryId={
+                        categories.find(
+                          (category) => category.id === item.CategoryId
+                        )?.categories
+                      }
+                      name={item.name}
+                      cost={item.cost}
+                      promotion={item.promotion}
+                      sale={item.sale}
+                      perdiscount={item.perdiscount}
+                    />
+                  </Col>
+                ))}
               </Row>
             </Col>
           </Row>

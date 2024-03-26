@@ -68,7 +68,7 @@ const Checkout = () => {
             <i className="fa-solid fa-angle-right"></i>
           </div>
           <Link to="/Cart" className="Shop">
-            CheckOut
+            Cart
           </Link>
         </div>
       </Container>
