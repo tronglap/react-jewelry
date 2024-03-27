@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import emailjs from "emailjs-com";
 import "./Checkout.css";
 import Header from "../Header/HeaderMain/Header";
 import { Col, Container, Form, Row } from "react-bootstrap";
@@ -31,23 +30,6 @@ const Checkout = () => {
   const [formValid, setFormValid] = useState(true);
   const handleAddOrder = async (e) => {
     e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "service_9dofpxr",
-        "template_xfe434c",
-        e.target,
-        "dU2mmYjB_UKNCCJmr"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-
     if (
       input.name &&
       input.phone &&
@@ -81,6 +63,22 @@ const Checkout = () => {
   const handleBlur = () => {
     setIsFocused(false);
   };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", e.target, "YOUR_USER_ID")
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
+
   return (
     <div className="CheckOut">
       <Header />

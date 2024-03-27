@@ -34,7 +34,7 @@ const Checkout = () => {
 
     emailjs
       .sendForm(
-        "service_9dofpxr",
+        "YOUR_SERVICE_ID",
         "template_xfe434c",
         e.target,
         "dU2mmYjB_UKNCCJmr"

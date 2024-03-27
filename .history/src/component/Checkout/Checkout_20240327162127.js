@@ -31,23 +31,6 @@ const Checkout = () => {
   const [formValid, setFormValid] = useState(true);
   const handleAddOrder = async (e) => {
     e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "service_9dofpxr",
-        "template_xfe434c",
-        e.target,
-        "dU2mmYjB_UKNCCJmr"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-
     if (
       input.name &&
       input.phone &&
@@ -81,6 +64,22 @@ const Checkout = () => {
   const handleBlur = () => {
     setIsFocused(false);
   };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", e.target, "YOUR_USER_ID")
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
+
   return (
     <div className="CheckOut">
       <Header />
