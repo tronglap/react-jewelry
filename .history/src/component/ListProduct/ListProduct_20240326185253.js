@@ -87,15 +87,6 @@ const ListProduct = () => {
         <Container>
           <Row>
             <Col lg={3}>
-              <div className="FBN">
-                <p className="filterbyname">Filter by name</p>
-                <input
-                  type="text"
-                  placeholder="Search by title..."
-                  value={filterKeyword}
-                  onChange={(e) => setFilterKeyword(e.target.value)}
-                />
-              </div>
               <div className="Product_Categories">Product Categories</div>
               <div className="Categories">
                 {categories.map((ct) => (
@@ -118,7 +109,7 @@ const ListProduct = () => {
                   placeholder="$ 0.00"
                   onChange={(e) => setMinPrice(e.target.value)}
                 />
-                <p className="TO">TO</p>
+                to
                 <input
                   type="number"
                   placeholder="$ 100000.00"
@@ -181,6 +172,12 @@ const ListProduct = () => {
           </Row>
         </Container>
       </div>
+      <input
+        type="text"
+        placeholder="Search by title..."
+        value={filterKeyword}
+        onChange={(e) => setFilterKeyword(e.target.value)}
+      />
     </div>
   );
 };

@@ -76,7 +76,13 @@ const ListProduct = () => {
 
   const [isSortActive, setIsSortActive] = useState(false);
   const handleSortClick = () => {
-    setIsSortActive(!isSortActive); // Khi click, chuyển đổi trạng thái của lớp
+    setIsSortActive(!isSortActive);
+  };
+  const formatToUSD = (value) => {
+    return parseFloat(value)
+      .toFixed(2)
+      .replace(/\d(?=(\d{3})+\.)/g, "$&,")
+      .replace(".00", "");
   };
 
   return (
@@ -114,14 +120,16 @@ const ListProduct = () => {
               <div className="FBP">
                 <p className="filterbyprice">Price</p>
                 <input
-                  type="number"
+                  type="text"
                   placeholder="$ 0.00"
+                  value={minPrice !== 0 ? formatToUSD(minPrice) : ""}
                   onChange={(e) => setMinPrice(e.target.value)}
                 />
                 <p className="TO">TO</p>
                 <input
-                  type="number"
+                  type="text"
                   placeholder="$ 100000.00"
+                  value={maxPrice !== 0 ? formatToUSD(maxPrice) : ""}
                   onChange={(e) => setMaxPrice(e.target.value)}
                 />
               </div>

@@ -14,14 +14,6 @@ const ListProduct = () => {
     "https://65f3b3d2105614e654a0e686.mockapi.io/Categories"
   );
 
-  const [filterKeyword, setFilterKeyword] = useState("");
-  useEffect(() => {
-    const filteredProducts = products.filter((product) => {
-      return product.name.toLowerCase().includes(filterKeyword.toLowerCase());
-    });
-    setProductFilter(filteredProducts);
-  }, [filterKeyword, products]);
-
   const [productFilter, setProductFilter] = useState([]);
   const [categoryCounts, setCategoryCounts] = useState({});
 
@@ -74,11 +66,6 @@ const ListProduct = () => {
     setProductFilter(filter);
   };
 
-  const [isSortActive, setIsSortActive] = useState(false);
-  const handleSortClick = () => {
-    setIsSortActive(!isSortActive); // Khi click, chuyển đổi trạng thái của lớp
-  };
-
   return (
     <div className="ListProduct">
       <Header />
@@ -87,15 +74,6 @@ const ListProduct = () => {
         <Container>
           <Row>
             <Col lg={3}>
-              <div className="FBN">
-                <p className="filterbyname">Filter by name</p>
-                <input
-                  type="text"
-                  placeholder="Search by title..."
-                  value={filterKeyword}
-                  onChange={(e) => setFilterKeyword(e.target.value)}
-                />
-              </div>
               <div className="Product_Categories">Product Categories</div>
               <div className="Categories">
                 {categories.map((ct) => (
@@ -118,7 +96,7 @@ const ListProduct = () => {
                   placeholder="$ 0.00"
                   onChange={(e) => setMinPrice(e.target.value)}
                 />
-                <p className="TO">TO</p>
+                to
                 <input
                   type="number"
                   placeholder="$ 100000.00"
@@ -134,23 +112,8 @@ const ListProduct = () => {
                       Show {productFilter.length} product of {products.length}{" "}
                       results
                     </div>
-                    <div className="sort" onClick={handleSortClick}>
-                      <p>Default sort</p>
-                      <i className="fa-solid fa-angle-down"></i>
-                      <div className={`sorts ${isSortActive ? "active" : ""}`}>
-                        <div className="sortbya-z">
-                          <p>Sort by A - Z</p>
-                        </div>
-                        <div className="sortbyz-a">
-                          <p>Sort by Z - A</p>
-                        </div>
-                        <div className="sortbypricelh">
-                          <p>Sort by price: Low to High</p>
-                        </div>
-                        <div className="sortbypricehl">
-                          <p>Sort by price: High to Low</p>
-                        </div>
-                      </div>
+                    <div className="soft">
+                      <p>Default soft</p>
                     </div>
                   </div>
                 </Container>

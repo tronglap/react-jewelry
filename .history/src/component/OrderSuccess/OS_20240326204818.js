@@ -3,7 +3,6 @@ import Header from "../Header/HeaderMain/Header";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
-import "./OS.css";
 
 const OS = () => {
   return (

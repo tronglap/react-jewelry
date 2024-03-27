@@ -19,11 +19,7 @@
 }
 
 .ListProduct .box_product .FBN input {
-    border: none;
-    background-color: transparent;
-    border-bottom: 1px solid black;
-    outline: none;
-    width: 50%;
+    border: none
 }
 
 
@@ -59,11 +55,6 @@
 
 .ListProduct .box_product .Categories .diamonds:hover {
     color: var(--color-primary)
-}
-
-.ListProduct .box_product .FBP .TO {
-    margin-top: 4%;
-    margin-left: 5px;
 }
 
 .ListProduct .box_product .FBP .filterbyprice {

@@ -61,9 +61,8 @@
     color: var(--color-primary)
 }
 
-.ListProduct .box_product .FBP .TO {
-    margin-top: 4%;
-    margin-left: 5px;
+.ListProduct .box_product .FBP {
+    text-align: left;
 }
 
 .ListProduct .box_product .FBP .filterbyprice {

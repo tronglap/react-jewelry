@@ -87,7 +87,7 @@ const ListProduct = () => {
         <Container>
           <Row>
             <Col lg={3}>
-              <div className="FBN">
+              <div className="filterbyname">
                 <p className="filterbyname">Filter by name</p>
                 <input
                   type="text"
@@ -118,7 +118,7 @@ const ListProduct = () => {
                   placeholder="$ 0.00"
                   onChange={(e) => setMinPrice(e.target.value)}
                 />
-                <p className="TO">TO</p>
+                to
                 <input
                   type="number"
                   placeholder="$ 100000.00"

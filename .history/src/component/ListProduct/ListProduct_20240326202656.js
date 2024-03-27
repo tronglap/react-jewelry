@@ -118,7 +118,7 @@ const ListProduct = () => {
                   placeholder="$ 0.00"
                   onChange={(e) => setMinPrice(e.target.value)}
                 />
-                <p className="TO">TO</p>
+                <Span> padding-bottom: 30px;</Span>
                 <input
                   type="number"
                   placeholder="$ 100000.00"

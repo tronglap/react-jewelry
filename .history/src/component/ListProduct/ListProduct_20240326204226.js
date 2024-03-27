@@ -114,14 +114,16 @@ const ListProduct = () => {
               <div className="FBP">
                 <p className="filterbyprice">Price</p>
                 <input
-                  type="number"
+                  type="text"
                   placeholder="$ 0.00"
+                  value={formatToUSD(minPrice)}
                   onChange={(e) => setMinPrice(e.target.value)}
                 />
                 <p className="TO">TO</p>
                 <input
-                  type="number"
+                  type="text"
                   placeholder="$ 100000.00"
+                  value={formatToUSD(maxPrice)}
                   onChange={(e) => setMaxPrice(e.target.value)}
                 />
               </div>
