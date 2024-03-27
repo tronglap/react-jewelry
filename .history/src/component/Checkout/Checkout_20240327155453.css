@@ -55,9 +55,7 @@
 .CheckOut .box_checkout .billing-fields .phonenumber .error-message,
 .CheckOut .box_checkout .billing-fields .address .error-message,
 .CheckOut .box_checkout .billing-fields .email-address .error-message {
-    color: red;
-    margin-bottom: 10px;
-    font-weight: bold;
+    color: red
 }
 
 .CheckOut .box_checkout .billing-fields h2 {

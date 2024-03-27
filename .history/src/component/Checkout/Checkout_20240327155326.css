@@ -51,16 +51,7 @@
     display: none;
 }
 
-.CheckOut .box_checkout .billing-fields .fullname .error-message,
-.CheckOut .box_checkout .billing-fields .phonenumber .error-message,
-.CheckOut .box_checkout .billing-fields .address .error-message,
-.CheckOut .box_checkout .billing-fields .email-address .error-message {
-    color: red;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-.CheckOut .box_checkout .billing-fields h2 {
+.CheckOut .box-checkout .billing-fields .error-message .CheckOut .box_checkout .billing-fields h2 {
     font-size: 28px;
     font-family: 'Prata', sans-serif;
     margin-bottom: 0.5em;

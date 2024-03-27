@@ -7,7 +7,7 @@ import { useCart } from "../../UseContext";
 import Button from "../Button/Button";
 
 const Cart = () => {
-  const { cartItems, deleteToCart } = useCart();
+  const { cartItems } = useCart();
   const [listCart, setListCard] = useState(cartItems);
   const isProduct = listCart.length > 0;
 
@@ -31,15 +31,6 @@ const Cart = () => {
     } else {
       window.location.reload();
     }
-  };
-
-  const handleDeleteProduct = (id) => {
-    const newCart = [...listCart];
-    const updatedCart = listCart.filter((item) => item.id !== id);
-    newCart.splice(updatedCart, 1);
-    deleteToCart(newCart);
-    setListCard(newCart);
-    localStorage.setItem("LIST_CART", JSON.stringify(newCart));
   };
 
   return (
@@ -86,14 +77,7 @@ const Cart = () => {
                       key={item.id}
                       className="d-flex align-items-center justify-content-center p-3 border-bottom "
                     >
-                      <Col>
-                        <div
-                          className="delete-product"
-                          onClick={() => handleDeleteProduct(item.id)}
-                        >
-                          <i className="fa-solid fa-xmark"></i>
-                        </div>
-                      </Col>
+                      <Col>X</Col>
                       <Col>
                         <div className="thumb">
                           <img src={item.image} alt="" />

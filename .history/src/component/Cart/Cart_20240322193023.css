@@ -58,10 +58,6 @@
     text-transform: uppercase;
 }
 
-.Cart .cart-product .delete-product {
-    cursor: pointer;
-}
-
 .Cart .cart-product .quantity {
     display: flex;
     align-items: center;

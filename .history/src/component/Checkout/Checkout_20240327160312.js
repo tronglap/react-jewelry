@@ -22,11 +22,37 @@ const Checkout = () => {
   });
 
   const handleInputChange = (e) => {
+    // Kiểm tra tên trường và giá trị nhập vào
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
+
+    // Kiểm tra độ dài của số điện thoại nhập vào
+    if (e.target.name === "phone") {
+      const phoneNumber = e.target.value.trim(); // Loại bỏ khoảng trắng ở đầu và cuối chuỗi
+      if (phoneNumber.length < 10 || phoneNumber.length > 11) {
+        // Nếu số điện thoại nhập vào ít hơn 10 chữ số hoặc nhiều hơn 11 chữ số
+        // Thực hiện cập nhật lại giá trị số điện thoại và hiển thị thông báo lỗi
+        setInput({
+          ...input,
+          phone: phoneNumber,
+        });
+        // Hiển thị thông báo lỗi
+        setFormValid(false);
+      } else {
+        // Nếu số điện thoại nhập vào hợp lệ
+        // Thực hiện cập nhật giá trị số điện thoại và ẩn thông báo lỗi (nếu có)
+        setInput({
+          ...input,
+          phone: phoneNumber,
+        });
+        // Ẩn thông báo lỗi
+        setFormValid(true);
+      }
+    }
   };
+
   const [formValid, setFormValid] = useState(true);
   const handleAddOrder = async (e) => {
     e.preventDefault();
@@ -142,7 +168,7 @@ const Checkout = () => {
                     />
                     {!input.phone && !formValid && (
                       <p className="error-message">
-                        Please enter your phone number (10 - 11)
+                        Please enter your phone number
                       </p>
                     )}
                   </div>

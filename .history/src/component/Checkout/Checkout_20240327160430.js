@@ -26,7 +26,25 @@ const Checkout = () => {
       ...input,
       [e.target.name]: e.target.value,
     });
+
+    if (e.target.name === "phone") {
+      const phoneNumber = e.target.value.trim();
+      if (phoneNumber.length < 10 || phoneNumber.length > 11) {
+        setInput({
+          ...input,
+          phone: phoneNumber,
+        });
+        setFormValid(false);
+      } else {
+        setInput({
+          ...input,
+          phone: phoneNumber,
+        });
+        setFormValid(true);
+      }
+    }
   };
+
   const [formValid, setFormValid] = useState(true);
   const handleAddOrder = async (e) => {
     e.preventDefault();
@@ -142,7 +160,7 @@ const Checkout = () => {
                     />
                     {!input.phone && !formValid && (
                       <p className="error-message">
-                        Please enter your phone number (10 - 11)
+                        Please enter your phone number
                       </p>
                     )}
                   </div>

@@ -31,13 +31,11 @@ export const CartProvider = ({ children }) => {
   const deleteToCart = (index) => {
     const newCart = [...cartItems];
     newCart.splice(index, 1);
-    setCartItems(newCart);
+    setCart(newCart);
   };
 
   return (
-    <UseContext.Provider
-      value={{ cartItems, addToCart, setCartItems, deleteToCart }}
-    >
+    <UseContext.Provider value={{ cartItems, addToCart, setCartItems }}>
       {children}
     </UseContext.Provider>
   );

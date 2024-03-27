@@ -28,16 +28,8 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("LIST_CART", JSON.stringify(newCart));
   };
 
-  const deleteToCart = (index) => {
-    const newCart = [...cartItems];
-    newCart.splice(index, 1);
-    setCartItems(newCart);
-  };
-
   return (
-    <UseContext.Provider
-      value={{ cartItems, addToCart, setCartItems, deleteToCart }}
-    >
+    <UseContext.Provider value={{ cartItems, addToCart, setCartItems }}>
       {children}
     </UseContext.Provider>
   );

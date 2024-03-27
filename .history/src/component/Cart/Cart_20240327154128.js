@@ -38,7 +38,6 @@ const Cart = () => {
     const updatedCart = listCart.filter((item) => item.id !== id);
     newCart.splice(updatedCart, 1);
     deleteToCart(newCart);
-    setListCard(newCart);
     localStorage.setItem("LIST_CART", JSON.stringify(newCart));
   };
 

@@ -187,7 +187,7 @@ const ListProduct = () => {
                       results
                     </div>
                     <div className="sort" onClick={handleSortClick}>
-                      <p>{selectedFilter}</p>
+                      <p>Default sort</p>
                       <i className="fa-solid fa-angle-down"></i>
                       <div className={`sorts ${isSortActive ? "active" : ""}`}>
                         <div

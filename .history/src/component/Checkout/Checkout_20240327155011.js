@@ -118,17 +118,8 @@ const Checkout = () => {
                       name="name"
                       required
                     />
-                    {!input.name && !formValid && (
-                      <p className="error-message">
-                        Please enter your full name
-                      </p>
-                    )}
                   </div>
-                  <div
-                    className={`phonenumber ${
-                      !input.phone && !formValid ? "error" : ""
-                    }`}
-                  >
+                  <div className="phonenumber">
                     <label>Phone</label>
                     <input
                       type="number"
@@ -140,17 +131,8 @@ const Checkout = () => {
                       name="phone"
                       required
                     />
-                    {!input.phone && !formValid && (
-                      <p className="error-message">
-                        Please enter your phone number (10 - 11)
-                      </p>
-                    )}
                   </div>
-                  <div
-                    className={`address ${
-                      !input.street_address && !formValid ? "error" : ""
-                    }`}
-                  >
+                  <div className="address">
                     <label>Street address</label>
                     <input
                       type="text"
@@ -162,17 +144,8 @@ const Checkout = () => {
                       name="street_address"
                       required
                     />
-                    {!input.street_address && !formValid && (
-                      <p className="error-message">
-                        Please enter your street address
-                      </p>
-                    )}
                   </div>
-                  <div
-                    className={`email-address ${
-                      !input.email_address && !formValid ? "error" : ""
-                    }`}
-                  >
+                  <div className="email-address">
                     <label>Email address</label>
                     <input
                       type="text"
@@ -184,12 +157,7 @@ const Checkout = () => {
                       name="email_address"
                       required
                     />
-                    {!input.email_address && !formValid && (
-                      <p className="error-message">
-                        Please enter your email address
-                      </p>
-                    )}
-                  </div>{" "}
+                  </div>
                 </Form>
               </div>
             </Col>

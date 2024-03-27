@@ -21,12 +21,38 @@ const Checkout = () => {
     email_address: "",
   });
 
+  // Hàm chuẩn hóa số điện thoại
+  const normalizePhoneNumber = (phoneNumber) => {
+    // Loại bỏ các ký tự không phải số
+    const cleaned = phoneNumber.replace(/\D/g, "");
+
+    // Kiểm tra độ dài của số điện thoại
+    const length = cleaned.length;
+
+    // Độ dài hợp lệ của số điện thoại ở Việt Nam là 10 hoặc 11 chữ số
+    if (length === 10) {
+      // Nếu có 10 chữ số, thêm đầu số "0"
+      return "0" + cleaned;
+    } else if (length === 11 && cleaned.startsWith("84")) {
+      // Nếu có 11 chữ số và bắt đầu bằng "84", thay thế "84" bằng "0"
+      return "0" + cleaned.slice(2);
+    }
+
+    // Trả về số điện thoại không thay đổi nếu không hợp lệ
+    return phoneNumber;
+  };
+
+  // Sử dụng hàm normalizePhoneNumber trong handleInputChange
   const handleInputChange = (e) => {
     setInput({
       ...input,
-      [e.target.name]: e.target.value,
+      [e.target.name]:
+        e.target.name === "phone"
+          ? normalizePhoneNumber(e.target.value)
+          : e.target.value,
     });
   };
+
   const [formValid, setFormValid] = useState(true);
   const handleAddOrder = async (e) => {
     e.preventDefault();
@@ -142,7 +168,7 @@ const Checkout = () => {
                     />
                     {!input.phone && !formValid && (
                       <p className="error-message">
-                        Please enter your phone number (10 - 11)
+                        Please enter your phone number
                       </p>
                     )}
                   </div>

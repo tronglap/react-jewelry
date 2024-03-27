@@ -28,6 +28,7 @@ const Checkout = () => {
     });
   };
   const [formValid, setFormValid] = useState(true);
+
   const handleAddOrder = async (e) => {
     e.preventDefault();
     if (
@@ -52,6 +53,7 @@ const Checkout = () => {
         navigate("/order-success");
       }
     } else {
+      // Nếu form không hợp lệ, hiển thị thông báo lỗi
       setFormValid(false);
     }
   };
@@ -97,100 +99,58 @@ const Checkout = () => {
             <Col lg="7">
               <div className="billing-fields">
                 <h2>Billing details</h2>
-                <Form
-                  onSubmit={handleAddOrder}
-                  className={`box_checkout ${isProduct ? "active" : ""}`}
-                  noValidate
-                >
-                  <div
-                    className={`fullname ${
-                      !input.name && !formValid ? "error" : ""
-                    }`}
-                  >
-                    <label>Full name</label>
-                    <input
-                      type="text"
-                      onFocus={handleFocus}
-                      onBlur={handleBlur}
-                      className={isFocused ? "focused" : ""}
-                      onChange={handleInputChange}
-                      value={input.name}
-                      name="name"
-                      required
-                    />
-                    {!input.name && !formValid && (
-                      <p className="error-message">
-                        Please enter your full name
-                      </p>
-                    )}
-                  </div>
-                  <div
-                    className={`phonenumber ${
-                      !input.phone && !formValid ? "error" : ""
-                    }`}
-                  >
-                    <label>Phone</label>
-                    <input
-                      type="number"
-                      onFocus={handleFocus}
-                      onBlur={handleBlur}
-                      className={isFocused ? "focused" : ""}
-                      onChange={handleInputChange}
-                      value={input.phone}
-                      name="phone"
-                      required
-                    />
-                    {!input.phone && !formValid && (
-                      <p className="error-message">
-                        Please enter your phone number (10 - 11)
-                      </p>
-                    )}
-                  </div>
-                  <div
-                    className={`address ${
-                      !input.street_address && !formValid ? "error" : ""
-                    }`}
-                  >
-                    <label>Street address</label>
-                    <input
-                      type="text"
-                      onFocus={handleFocus}
-                      onBlur={handleBlur}
-                      className={isFocused ? "focused" : ""}
-                      onChange={handleInputChange}
-                      value={input.street_address}
-                      name="street_address"
-                      required
-                    />
-                    {!input.street_address && !formValid && (
-                      <p className="error-message">
-                        Please enter your street address
-                      </p>
-                    )}
-                  </div>
-                  <div
-                    className={`email-address ${
-                      !input.email_address && !formValid ? "error" : ""
-                    }`}
-                  >
-                    <label>Email address</label>
-                    <input
-                      type="text"
-                      onFocus={handleFocus}
-                      onBlur={handleBlur}
-                      className={isFocused ? "focused" : ""}
-                      onChange={handleInputChange}
-                      value={input.email_address}
-                      name="email_address"
-                      required
-                    />
-                    {!input.email_address && !formValid && (
-                      <p className="error-message">
-                        Please enter your email address
-                      </p>
-                    )}
-                  </div>{" "}
-                </Form>
+                <div className="fullname">
+                  <label>Full name</label>
+                  <input
+                    type="text"
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    className={isFocused ? "focused" : ""}
+                    onChange={handleInputChange}
+                    value={input.name}
+                    name="name"
+                    required
+                  />
+                </div>
+                <div className="phonenumber">
+                  <label>Phone</label>
+                  <input
+                    type="number"
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    className={isFocused ? "focused" : ""}
+                    onChange={handleInputChange}
+                    value={input.phone}
+                    name="phone"
+                    required
+                  />
+                </div>
+                <div className="address">
+                  <label>Street address</label>
+                  <input
+                    type="text"
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    className={isFocused ? "focused" : ""}
+                    onChange={handleInputChange}
+                    value={input.street_address}
+                    name="street_address"
+                    required
+                  />
+                </div>
+                <div className="email-address">
+                  <label>Email address</label>
+                  <input
+                    type="text"
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    className={isFocused ? "focused" : ""}
+                    onChange={handleInputChange}
+                    value={input.email_address}
+                    name="email_address"
+                    required
+                  />
+                </div>
               </div>
             </Col>
             <Col lg="5">

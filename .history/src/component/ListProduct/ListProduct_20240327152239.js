@@ -80,27 +80,8 @@ const ListProduct = () => {
   };
 
   const [sortBy, setSortBy] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState("Default sort");
-
   const handleSort = (sortType) => {
     setSortBy(sortType);
-    switch (sortType) {
-      case "az":
-        setSelectedFilter("Sort by A - Z");
-        break;
-      case "za":
-        setSelectedFilter("Sort by Z - A");
-        break;
-      case "priceLH":
-        setSelectedFilter("Sort by price: Low to High");
-        break;
-      case "priceHL":
-        setSelectedFilter("Sort by price: High to Low");
-        break;
-      default:
-        setSelectedFilter("Default sort");
-        break;
-    }
   };
   useEffect(() => {
     let sortedProducts = [...products];
@@ -187,31 +168,19 @@ const ListProduct = () => {
                       results
                     </div>
                     <div className="sort" onClick={handleSortClick}>
-                      <p>{selectedFilter}</p>
+                      <p>Default sort</p>
                       <i className="fa-solid fa-angle-down"></i>
                       <div className={`sorts ${isSortActive ? "active" : ""}`}>
-                        <div
-                          className="sortbya-z"
-                          onClick={() => handleSort("az")}
-                        >
+                        <div className="sortbya-z">
                           <p>Sort by A - Z</p>
                         </div>
-                        <div
-                          className="sortbyz-a"
-                          onClick={() => handleSort("za")}
-                        >
+                        <div className="sortbyz-a">
                           <p>Sort by Z - A</p>
                         </div>
-                        <div
-                          className="sortbypricelh"
-                          onClick={() => handleSort("priceLH")}
-                        >
+                        <div className="sortbypricelh">
                           <p>Sort by price: Low to High</p>
                         </div>
-                        <div
-                          className="sortbypricehl"
-                          onClick={() => handleSort("priceHL")}
-                        >
+                        <div className="sortbypricehl">
                           <p>Sort by price: High to Low</p>
                         </div>
                       </div>

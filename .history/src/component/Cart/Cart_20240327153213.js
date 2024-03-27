@@ -7,7 +7,7 @@ import { useCart } from "../../UseContext";
 import Button from "../Button/Button";
 
 const Cart = () => {
-  const { cartItems, deleteToCart } = useCart();
+  const { cartItems } = useCart();
   const [listCart, setListCard] = useState(cartItems);
   const isProduct = listCart.length > 0;
 
@@ -34,12 +34,9 @@ const Cart = () => {
   };
 
   const handleDeleteProduct = (id) => {
-    const newCart = [...listCart];
     const updatedCart = listCart.filter((item) => item.id !== id);
-    newCart.splice(updatedCart, 1);
-    deleteToCart(newCart);
-    setListCard(newCart);
-    localStorage.setItem("LIST_CART", JSON.stringify(newCart));
+    setListCard(updatedCart);
+    localStorage.setItem("LIST_CART", JSON.stringify(updatedCart));
   };
 
   return (

@@ -138,11 +138,11 @@ const Checkout = () => {
                       onChange={handleInputChange}
                       value={input.phone}
                       name="phone"
-                      required
+                      required // Yêu cầu người dùng nhập thông tin
                     />
                     {!input.phone && !formValid && (
                       <p className="error-message">
-                        Please enter your phone number (10 - 11)
+                        Please enter your phone number
                       </p>
                     )}
                   </div>
@@ -160,7 +160,7 @@ const Checkout = () => {
                       onChange={handleInputChange}
                       value={input.street_address}
                       name="street_address"
-                      required
+                      required // Yêu cầu người dùng nhập thông tin
                     />
                     {!input.street_address && !formValid && (
                       <p className="error-message">
@@ -182,7 +182,7 @@ const Checkout = () => {
                       onChange={handleInputChange}
                       value={input.email_address}
                       name="email_address"
-                      required
+                      required // Yêu cầu người dùng nhập thông tin
                     />
                     {!input.email_address && !formValid && (
                       <p className="error-message">

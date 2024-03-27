@@ -78,58 +78,18 @@ const ListProduct = () => {
   const handleSortClick = () => {
     setIsSortActive(!isSortActive);
   };
-
-  const [sortBy, setSortBy] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState("Default sort");
-
-  const handleSort = (sortType) => {
-    setSortBy(sortType);
-    switch (sortType) {
-      case "az":
-        setSelectedFilter("Sort by A - Z");
-        break;
-      case "za":
-        setSelectedFilter("Sort by Z - A");
-        break;
-      case "priceLH":
-        setSelectedFilter("Sort by price: Low to High");
-        break;
-      case "priceHL":
-        setSelectedFilter("Sort by price: High to Low");
-        break;
-      default:
-        setSelectedFilter("Default sort");
-        break;
-    }
-  };
-  useEffect(() => {
-    let sortedProducts = [...products];
-    switch (sortBy) {
-      case "az":
-        sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case "za":
-        sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
-        break;
-      case "priceLH":
-        sortedProducts.sort((a, b) => {
-          const priceA = parseFloat(a.promotion || a.cost);
-          const priceB = parseFloat(b.promotion || b.cost);
-          return priceA - priceB;
-        });
-        break;
-      case "priceHL":
-        sortedProducts.sort((a, b) => {
-          const priceA = parseFloat(a.promotion || a.cost);
-          const priceB = parseFloat(b.promotion || b.cost);
-          return priceB - priceA;
-        });
-        break;
-      default:
-        break;
-    }
+  const sortProductsByName = (type) => {
+    const sortedProducts = [...productFilter].sort((a, b) => {
+      const nameA = a.name.toLowerCase();
+      const nameB = b.name.toLowerCase();
+      if (type === "asc") {
+        return nameA.localeCompare(nameB);
+      } else {
+        return nameB.localeCompare(nameA);
+      }
+    });
     setProductFilter(sortedProducts);
-  }, [sortBy, products]);
+  };
 
   return (
     <div className="ListProduct">
@@ -187,31 +147,19 @@ const ListProduct = () => {
                       results
                     </div>
                     <div className="sort" onClick={handleSortClick}>
-                      <p>{selectedFilter}</p>
+                      <p>Default sort</p>
                       <i className="fa-solid fa-angle-down"></i>
                       <div className={`sorts ${isSortActive ? "active" : ""}`}>
-                        <div
-                          className="sortbya-z"
-                          onClick={() => handleSort("az")}
-                        >
+                        <div className="sortbya-z">
                           <p>Sort by A - Z</p>
                         </div>
-                        <div
-                          className="sortbyz-a"
-                          onClick={() => handleSort("za")}
-                        >
+                        <div className="sortbyz-a">
                           <p>Sort by Z - A</p>
                         </div>
-                        <div
-                          className="sortbypricelh"
-                          onClick={() => handleSort("priceLH")}
-                        >
+                        <div className="sortbypricelh">
                           <p>Sort by price: Low to High</p>
                         </div>
-                        <div
-                          className="sortbypricehl"
-                          onClick={() => handleSort("priceHL")}
-                        >
+                        <div className="sortbypricehl">
                           <p>Sort by price: High to Low</p>
                         </div>
                       </div>
