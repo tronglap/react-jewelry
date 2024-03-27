@@ -35,7 +35,7 @@ const Detail = () => {
   const { addToCart } = useCart();
 
   const handleAddToCart = () => {
-    toast.warn("Add cart successed !", {
+    toast.warn("Add cart suceessed !", {
       icon: ({ theme, type }) => <img src={DetailProduct.image} />,
       position: "top-center",
       autoClose: 3000,
