@@ -65,27 +65,6 @@ const Checkout = () => {
   const handleBlur = () => {
     setIsFocused(false);
   };
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "service_9dofpxr",
-        "template_xfe434c",
-        e.target,
-        "dU2mmYjB_UKNCCJmr"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  };
-
   return (
     <div className="CheckOut">
       <Header />
