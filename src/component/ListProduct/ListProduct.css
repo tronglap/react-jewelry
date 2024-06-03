@@ -110,7 +110,7 @@ input[type=number]::-webkit-inner-spin-button {
     padding: 10px;
 }
 
-.ListProduct .box_product .sort {
+.ListProduct .box_product .sorting .sort {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -122,7 +122,7 @@ input[type=number]::-webkit-inner-spin-button {
     cursor: pointer;
 }
 
-.ListProduct .box_product .sort .sorts {
+.ListProduct .box_product .sorting .sort .sorts {
     background-color: whitesmoke;
     padding: 10px 10px;
     width: 150%;

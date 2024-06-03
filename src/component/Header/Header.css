@@ -154,22 +154,22 @@ path {
     width: 30%;
 }
 
-/*------------------------------------*/
-
-/*  {
-    display: none;
+.NavBar {
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: absolute;
+    position: fixed;
+    transition: 0.3s linear;
 }
 
-.active {
-    display: block;
-} */
+.NavBar.active {
+    background-color: rgba(0, 0, 0, 0.5);
+    visibility: visible;
+}
 
-.NavBar {
+.List {
     opacity: 0;
     pointer-events: none;
     top: 0;
@@ -180,23 +180,36 @@ path {
     transition: 0.3s linear;
     background-color: white;
     position: absolute;
-
+    visibility: hidden;
+    z-index: 999;
+    overflow-y: auto;
 }
 
-.NavBar.active {
+.List::-webkit-scrollbar {
+    width: 0%;
+}
+
+.List.active {
     pointer-events: visible;
     opacity: 1;
     left: 0;
+    visibility: visible;
 }
 
-.NavBar .icon_close {
+.List .icon_close {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 5%;
     cursor: pointer;
     position: relative;
 }
 
+.List .icon_close .icon {
+    padding: 10px;
+}
 
-.NavBar .icon_close .icon .line1 {
+.List .icon_close .icon .line1 {
     width: 20px;
     height: 2px;
     top: 10px;
@@ -208,7 +221,7 @@ path {
     position: absolute;
 }
 
-.NavBar .icon_close .icon .line2 {
+.List .icon_close .icon .line2 {
     width: 20px;
     height: 2px;
     top: 10px;
@@ -220,14 +233,14 @@ path {
     position: absolute;
 }
 
-.NavBar .icon_close .icon:hover .line1,
-.NavBar .icon_close .icon:hover .line2 {
+.List .icon_close .icon:hover .line1,
+.List .icon_close .icon:hover .line2 {
     transform: rotate(0);
     height: 3.5px;
     background-color: var(--color-primary)
 }
 
-.NavBar .icon_close .Menu {
+.List .icon_close .Menu {
     color: var(--color-secondary);
     text-transform: uppercase;
     text-align: left;
@@ -237,7 +250,7 @@ path {
     position: relative;
 }
 
-.NavBar .icon_close .Menu::after {
+.List .icon_close .Menu::after {
     content: "";
     display: block;
     margin-top: 20%;
@@ -247,11 +260,11 @@ path {
     position: absolute;
 }
 
-.NavBar .Home,
-.NavBar .Shop,
-.NavBar .Categories,
-.NavBar .Blog,
-.NavBar .Contact {
+.List .Home,
+.List .Shop,
+.List .Categories .title,
+.List .Blog,
+.List .Contact {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -263,27 +276,50 @@ path {
     cursor: pointer;
 }
 
-.NavBar .Home i,
-.NavBar .Shop i,
-.NavBar .Categories i,
-.NavBar .Blog i,
-.NavBar .Contact i {
+.List .Home i,
+.List .Shop i,
+.List .Categories .title i,
+.List .Blog i,
+.List .Contact i {
     font-size: 15px;
     transition: 0.3s ease;
 }
 
-.NavBar .Home:hover,
-.NavBar .Shop:hover,
-.NavBar .Categories:hover,
-.NavBar .Blog:hover,
-.NavBar .Contact:hover {
+.List .Home:hover,
+.List .Shop:hover,
+.List .Categories .title:hover,
+.List .Blog:hover,
+.List .Contact:hover {
     color: var(--color-primary)
 }
 
-.NavBar .Home.active i,
-.NavBar .Shop.acive i,
-.NavBar .Categories.active i,
-.NavBar .Blog.active i,
-.NavBar .Contact.active i {
+.List .Home.active i,
+.List .Shop.active i,
+.List .Categories.active .title i,
+.List .Blog.active i,
+.List .Contact.active i {
     transform: rotate(90deg);
+}
+
+.NavBar .List .Categories .submenu-cate {
+    height: 0;
+    opacity: 0;
+    transition: 0.3s ease;
+}
+
+.NavBar .List .Categories.active .submenu-cate {
+    opacity: 1;
+    height: 200px;
+}
+
+.NavBar .List .Categories .submenu-cate .name-cate {
+    display: block;
+    color: var(--color-secondary);
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.NavBar .List .Categories .submenu-cate .name-cate:hover {
+    color: var(--color-primary)
 }

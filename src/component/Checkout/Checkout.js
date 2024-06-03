@@ -8,6 +8,7 @@ import "./Checkout.css";
 import { useCart } from "../../UseContext";
 import Button from "../Button/Button";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Checkout = () => {
   const { cartItems, setCartItems } = useCart();
@@ -15,11 +16,27 @@ const Checkout = () => {
   const isProduct = Checkoutcart.length > 0;
   const navigate = useNavigate();
 
+  var today = new Date(),
+    date_order =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate() +
+      "|" +
+      today.getHours() +
+      ":" +
+      today.getMinutes() +
+      ":" +
+      today.getSeconds() +
+      ":";
+
   const [input, setInput] = useState({
     name: "",
     phone: "",
     street_address: "",
     email_address: "",
+    date: date_order,
   });
 
   const handleInputChange = (e) => {
@@ -28,7 +45,6 @@ const Checkout = () => {
       [e.target.name]: e.target.value,
     });
   };
-  const [formValid, setFormValid] = useState(true);
   const handleAddOrder = async (e) => {
     e.preventDefault();
 
@@ -37,7 +53,7 @@ const Checkout = () => {
         "service_9dofpxr",
         "template_xfe434c",
         e.target,
-        "dU2mmYjB_UKNCCJmr"
+        "n-D36KQTbr7EQLDLx"
       )
       .then(
         (result) => {
@@ -49,28 +65,99 @@ const Checkout = () => {
       );
 
     if (
-      input.name &&
-      input.phone &&
-      input.street_address &&
-      input.email_address
+      input.name === "" &&
+      input.phone === "" &&
+      input.street_address === "" &&
+      input.email_address === ""
     ) {
-      const result = await axios.post(
-        "https://65fd87669fc4425c653229e1.mockapi.io/Order",
-        { ...input, Checkoutcart: [...cartItems] }
-      );
-      if (result.status === 201) {
-        setInput({
-          name: "",
-          phone: "",
-          street_address: "",
-          email_address: "",
-        });
-        setCartItems([]);
-        localStorage.setItem("LIST_CART", JSON.stringify(cartItems));
-        navigate("/order-success");
-      }
+      toast.error("Please enter your info", {
+        icon: ({ theme, type }) => (
+          <i
+            className="fa-solid fa-circle-exclamation"
+            style={{ color: "#ff0000" }}
+          ></i>
+        ),
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } else {
-      setFormValid(false);
+      if (input.phone.length < 10 || input.phone.length > 11) {
+        toast.error("Please enter your phone number (10 - 11)", {
+          icon: ({ theme, type }) => (
+            <i
+              className="fa-solid fa-circle-exclamation"
+              style={{ color: "#ff0000" }}
+            ></i>
+          ),
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else if (
+        input.street_address.length < 10 ||
+        input.street_address.length > 100
+      ) {
+        toast.error("Please enter your street address", {
+          icon: ({ theme, type }) => (
+            <i
+              className="fa-solid fa-circle-exclamation"
+              style={{ color: "#ff0000" }}
+            ></i>
+          ),
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else if (!input.email_address.includes("@" && ".com")) {
+        toast.error("Please enter your email address", {
+          icon: ({ theme, type }) => (
+            <i
+              className="fa-solid fa-circle-exclamation"
+              style={{ color: "#ff0000" }}
+            ></i>
+          ),
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        const result = await axios.post(
+          "https://65fd87669fc4425c653229e1.mockapi.io/Order",
+          { ...input, Checkoutcart: [...cartItems] }
+        );
+        if (result.status === 201) {
+          setInput({
+            name: "",
+            phone: "",
+            street_address: "",
+            email_address: "",
+          });
+          setCartItems([]);
+          localStorage.setItem("LIST_CART", JSON.stringify(cartItems));
+          navigate("/order-success");
+        }
+      }
     }
   };
 
@@ -105,7 +192,7 @@ const Checkout = () => {
             <Button title="Return to shop"></Button>
           </Link>
         </div>
-        <form
+        <Form
           onSubmit={handleAddOrder}
           className={`box_checkout ${isProduct ? "active" : ""}`}
         >
@@ -113,100 +200,54 @@ const Checkout = () => {
             <Col lg="7">
               <div className="billing-fields">
                 <h2>Billing details</h2>
-                <Form
-                  onSubmit={handleAddOrder}
-                  className={`box_checkout ${isProduct ? "active" : ""}`}
-                  noValidate
-                >
-                  <div
-                    className={`fullname ${
-                      !input.name && !formValid ? "error" : ""
-                    }`}
-                  >
-                    <label>Full name</label>
-                    <input
-                      type="text"
-                      onFocus={handleFocus}
-                      onBlur={handleBlur}
-                      className={isFocused ? "focused" : ""}
-                      onChange={handleInputChange}
-                      value={input.name}
-                      name="name"
-                      required
-                    />
-                    {!input.name && !formValid && (
-                      <p className="error-message">
-                        Please enter your full name
-                      </p>
-                    )}
-                  </div>
-                  <div
-                    className={`phonenumber ${
-                      !input.phone && !formValid ? "error" : ""
-                    }`}
-                  >
-                    <label>Phone</label>
-                    <input
-                      type="number"
-                      onFocus={handleFocus}
-                      onBlur={handleBlur}
-                      className={isFocused ? "focused" : ""}
-                      onChange={handleInputChange}
-                      value={input.phone}
-                      name="phone"
-                      required
-                    />
-                    {!input.phone && !formValid && (
-                      <p className="error-message">
-                        Please enter your phone number (10 - 11)
-                      </p>
-                    )}
-                  </div>
-                  <div
-                    className={`address ${
-                      !input.street_address && !formValid ? "error" : ""
-                    }`}
-                  >
-                    <label>Street address</label>
-                    <input
-                      type="text"
-                      onFocus={handleFocus}
-                      onBlur={handleBlur}
-                      className={isFocused ? "focused" : ""}
-                      onChange={handleInputChange}
-                      value={input.street_address}
-                      name="street_address"
-                      required
-                    />
-                    {!input.street_address && !formValid && (
-                      <p className="error-message">
-                        Please enter your street address
-                      </p>
-                    )}
-                  </div>
-                  <div
-                    className={`email-address ${
-                      !input.email_address && !formValid ? "error" : ""
-                    }`}
-                  >
-                    <label>Email address</label>
-                    <input
-                      type="text"
-                      onFocus={handleFocus}
-                      onBlur={handleBlur}
-                      className={isFocused ? "focused" : ""}
-                      onChange={handleInputChange}
-                      value={input.email_address}
-                      name="email_address"
-                      required
-                    />
-                    {!input.email_address && !formValid && (
-                      <p className="error-message">
-                        Please enter your email address
-                      </p>
-                    )}
-                  </div>{" "}
-                </Form>
+                <div className="fullname">
+                  <label>Full name</label>
+                  <input
+                    type="text"
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    className={isFocused ? "focused" : ""}
+                    onChange={handleInputChange}
+                    value={input.name}
+                    name="name"
+                  />
+                </div>
+                <div className="phonenumber">
+                  <label>Phone</label>
+                  <input
+                    type="number"
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    className={isFocused ? "focused" : ""}
+                    onChange={handleInputChange}
+                    value={input.phone}
+                    name="phone"
+                  />
+                </div>
+                <div className="address">
+                  <label>Street address</label>
+                  <input
+                    type="text"
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    className={isFocused ? "focused" : ""}
+                    onChange={handleInputChange}
+                    value={input.street_address}
+                    name="street_address"
+                  />
+                </div>
+                <div className="email-address">
+                  <label>Email address</label>
+                  <input
+                    type="text"
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    className={isFocused ? "focused" : ""}
+                    onChange={handleInputChange}
+                    value={input.email_address}
+                    name="email_address"
+                  />
+                </div>
               </div>
             </Col>
             <Col lg="5">
@@ -268,7 +309,7 @@ const Checkout = () => {
               </div>
             </Col>
           </Row>
-        </form>
+        </Form>
       </Container>
     </div>
   );

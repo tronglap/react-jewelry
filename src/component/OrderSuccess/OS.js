@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "../Header/HeaderMain/Header";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import "./OS.css";
+import { useCart } from "../../UseContext";
 
 const OS = () => {
+  const { cartItems, setCartItems } = useCart();
+  setCartItems([]);
+  localStorage.setItem("LIST_CART", JSON.stringify(cartItems));
+
   return (
     <div>
       <Header />

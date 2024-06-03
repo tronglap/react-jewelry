@@ -1,17 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/logo/logo.png";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { useCart } from "../../UseContext";
+import UseFetch from "../../UseFetch";
+import UseBlock from "../../UseBlock";
 
 const Header = () => {
+  const categories = UseFetch(
+    "https://65f3b3d2105614e654a0e686.mockapi.io/Categories"
+  );
   const [isActive, setIsActive] = useState(false);
+  const [rotate, setRotate] = useState(false);
+  const [blockScroll, allowScroll] = UseBlock();
+  const { cartItems } = useCart();
+
+  const toggleRotate = () => {
+    setRotate(!rotate);
+  };
 
   const toggleNavBar = () => {
     setIsActive(!isActive);
+    if (!isActive) {
+      blockScroll();
+    } else {
+      allowScroll();
+    }
   };
-
-  const { cartItems } = useCart();
+  useEffect(() => {
+    return () => {
+      allowScroll();
+    };
+  }, []);
 
   return (
     <div className="nav">
@@ -29,7 +49,9 @@ const Header = () => {
       </div>
       <div className="mid">
         <div className="logo">
-          <img src={logo} alt="" />
+          <Link to="/">
+            <img src={logo} alt="" />
+          </Link>
         </div>
       </div>
       <div className="right">
@@ -63,32 +85,63 @@ const Header = () => {
         </Link>
       </div>
       <div className={`NavBar ${isActive ? "active" : ""}`}>
-        <div className="icon_close" onClick={toggleNavBar}>
-          <span className="Menu">Menu</span>
-          <div className="icon">
-            <div className="line1"></div>
-            <div className="line2"></div>
+        <div className={`List ${isActive ? "active" : ""}`}>
+          <div className="icon_close" onClick={toggleNavBar}>
+            <span className="Menu">Menu</span>
+            <div className="icon">
+              <div className="line1"></div>
+              <div className="line2"></div>
+            </div>
           </div>
-        </div>
-        <Link to="/" className="Home">
-          Home
-          <i className="fa-solid fa-angle-right"></i>
-        </Link>
-        <Link to="/list-product" className="Shop">
-          Shop
-          <i className="fa-solid fa-angle-right"></i>
-        </Link>
-        <div className="Categories">
-          Categories
-          <i className="fa-solid fa-angle-right"></i>
-        </div>
-        <div className="Blog">
-          Blog
-          <i className="fa-solid fa-angle-right"></i>
-        </div>
-        <div className="Contact">
-          Contact
-          <i className="fa-solid fa-angle-right"></i>
+          <Link to="/" className="Home">
+            Home
+            <i className="fa-solid fa-angle-right"></i>
+          </Link>
+          <Link to="/list-product" className="Shop">
+            Shop
+            <i className="fa-solid fa-angle-right"></i>
+          </Link>
+          <div
+            className={`Categories ${rotate ? "active" : ""}`}
+            onClick={toggleRotate}
+          >
+            <div className="title">
+              <p>Categories</p>
+              <i className="fa-solid fa-angle-right"></i>
+            </div>
+            <div className="submenu-cate">
+              {categories &&
+                categories.map((item) => (
+                  <Link to="/list-product" className="name-cate" key={item.id}>
+                    {item.categories}
+                  </Link>
+                ))}
+            </div>
+            <div className="submenu-cate">
+              {categories &&
+                categories.map((item) => (
+                  <Link to="/list-product" className="name-cate" key={item.id}>
+                    {item.categories}
+                  </Link>
+                ))}
+            </div>
+            <div className="submenu-cate">
+              {categories &&
+                categories.map((item) => (
+                  <Link to="/list-product" className="name-cate" key={item.id}>
+                    {item.categories}
+                  </Link>
+                ))}
+            </div>
+          </div>
+          <div className="Blog">
+            Blog
+            <i className="fa-solid fa-angle-right"></i>
+          </div>
+          <div className="Contact">
+            Contact
+            <i className="fa-solid fa-angle-right"></i>
+          </div>
         </div>
       </div>
     </div>

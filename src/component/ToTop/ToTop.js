@@ -8,7 +8,7 @@ const ToTop = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      setIsVisible(scrollPosition > 500);
+      setIsVisible(scrollPosition > 300);
     };
 
     window.addEventListener("scroll", handleScroll);

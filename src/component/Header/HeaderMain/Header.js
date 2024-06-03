@@ -30,7 +30,9 @@ const Header = () => {
         </div>
         <div className="mid">
           <div className="thumb">
-            <img src={logo} alt="" />
+            <Link to="/">
+              <img src={logo} alt="" />
+            </Link>
           </div>
         </div>
         <div className="right">
